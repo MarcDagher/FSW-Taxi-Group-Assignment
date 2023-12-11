@@ -1440,3 +1440,29 @@
 #47 R:\\Coding\\Taxi-Assignment\\taxi-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('R:\\\\Coding\\\\Taxi-...')
 #48 {main}
 "} 
+[2023-12-11 21:58:03] local.ERROR: Command "migrate:freshh" is not defined.
+
+Did you mean one of these?
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"migrate:freshh\" is not defined.
+
+Did you mean one of these?
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status at R:\\Coding\\Taxi-Assignment\\taxi-backend\\vendor\\symfony\\console\\Application.php:737)
+[stacktrace]
+#0 R:\\Coding\\Taxi-Assignment\\taxi-backend\\vendor\\symfony\\console\\Application.php(266): Symfony\\Component\\Console\\Application->find('migrate:freshh')
+#1 R:\\Coding\\Taxi-Assignment\\taxi-backend\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 R:\\Coding\\Taxi-Assignment\\taxi-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 R:\\Coding\\Taxi-Assignment\\taxi-backend\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 {main}
+"} 
