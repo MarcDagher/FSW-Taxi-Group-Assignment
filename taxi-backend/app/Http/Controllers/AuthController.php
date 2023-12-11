@@ -61,15 +61,9 @@ class AuthController extends Controller
             'role_id' => $role_id,
         ]);
 
-        $token = Auth::login($user);
         return response()->json([
             'status' => 'success',
-            'message' => 'User created successfully',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
+            'message' => 'User registered succesfully',
         ]);
     }
 
