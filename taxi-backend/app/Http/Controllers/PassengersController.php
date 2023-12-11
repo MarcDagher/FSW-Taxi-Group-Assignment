@@ -50,11 +50,26 @@ class PassengersController extends Controller
 
         if ($user){
             $user -> update([
-                "email"=>$request->email ?? $user->email,
-                // "password" => $request->password ?? $user->password ,
                 "first_name" => $request->first_name ?? $user->first_name,
                 "last_name" => $request->last_name ?? $user->last_name,
-            ]);            
+            ]);
+            echo "user updated";            
+        } else {
+            return response() -> json([
+                'status' => 'failed',
+                'message' => 'User not found',
+            ]);
+        }
+    }
+
+    public function readPassenger(Request $request){
+        $user = User::where('email', $request -> email) -> first();
+        if ($user){
+            return response() -> json([
+                "email" => $user->email,
+                "first_name" => $user->first_name,
+                "last_name" => $user->last_name
+            ]);
         } else {
             return response() -> json([
                 'status' => 'failed',
