@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PassengersController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/signup', [PassengersController::class, 'createPassenger']);
-Route::post('/delete', [PassengersController::class, 'deletePassenger']);
-Route::post('/update', [PassengersController::class, 'updatePassenger']);
-Route::post('/read', [PassengersController::class, 'readPassenger']);
+Route::post('/signup', [UsersController::class, 'createUser']);
+Route::post('/delete', [UsersController::class, 'deleteUser']);
+Route::post('/update', [UsersController::class, 'updateUser']);
+Route::post('/read', [UsersController::class, 'displayUser']);
