@@ -44,4 +44,22 @@ class PassengersController extends Controller
             ]);
         }
     }
+
+    public function updatePassenger(Request $request){
+        $user = User::where('email', $request -> email) -> first();
+
+        if ($user){
+            $user -> update([
+                "email"=>$request->email ?? $user->email,
+                // "password" => $request->password ?? $user->password ,
+                "first_name" => $request->first_name ?? $user->first_name,
+                "last_name" => $request->last_name ?? $user->last_name,
+            ]);            
+        } else {
+            return response() -> json([
+                'status' => 'failed',
+                'message' => 'User not found',
+            ]);
+        }
+    }
 }
