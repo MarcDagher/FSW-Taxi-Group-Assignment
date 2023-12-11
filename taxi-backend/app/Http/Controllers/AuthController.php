@@ -50,15 +50,15 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
             'first_name' => 'required|string|min:2',
             'last_name' => 'required|string|min:2',
-            'role_id' => 'required|int|min:1|max:3',
         ]);
+        $role_id = $request->role_id ? $request->role_id : 3;
 
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'role_id' => $request->role_id,
+            'role_id' => $role_id,
         ]);
 
         $token = Auth::login($user);
