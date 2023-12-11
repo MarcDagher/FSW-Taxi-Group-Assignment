@@ -24,6 +24,7 @@ Route::post('/signup', [UsersController::class, 'createUser']);
 Route::post('/delete', [UsersController::class, 'deleteUser']);
 Route::post('/update', [UsersController::class, 'updateUser']);
 Route::post('/read', [UsersController::class, 'displayUser']);
+
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'register');
