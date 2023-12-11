@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->bigInteger('role_id');
             $table->foreign('role_id')->references('role_id')->on('roles');
+            $table->timestamps();
         });
     }
 
