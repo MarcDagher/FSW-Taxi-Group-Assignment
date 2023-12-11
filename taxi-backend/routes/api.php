@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/signup', [PassengersController::class, 'createPassenger']);
+Route::post('/delete', [PassengersController::class, 'deletePassenger']);
