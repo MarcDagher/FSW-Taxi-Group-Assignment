@@ -15,13 +15,13 @@ class UsersController extends Controller
     public function createUser(Request $request){
         $role_id = $request->role_id;
 
-        if (!isset($role_id) || $role_id == 1){
+        if (!$role_id || $role_id == 1){
             return response()->json(
                 ["status" => "failed",
                 "message" => "Invalid role type"]
             );
         } else {
-            
+
         $request->validate(['email' => 'required|string|email|unique:users', 'password' => 'required|string']);
             DB::table('users')->insert([
                 'email' => $request -> email,
