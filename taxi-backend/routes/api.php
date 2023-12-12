@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DriversController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 
 });
+Route::post('/createdriver',[DriversController::class,'createDriver']);
+Route::post('/readdriver',[DriversController::class,'readDriver']);
+Route::post('/updateDriverStatus',[DriversController::class,'updateDriverStatus']);

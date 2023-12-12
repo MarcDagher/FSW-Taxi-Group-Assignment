@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('driver_id');
             $table->string('driver_license');
             $table->integer('age');
-            $table->enum('driver-status', ['unverified', 'verified']);
+            $table->enum('driver_status', ['unverified', 'verified']);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('users');
         });
