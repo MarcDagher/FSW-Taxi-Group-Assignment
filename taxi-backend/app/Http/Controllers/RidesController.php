@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
 use App\Models\Ride;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class RidesController extends Controller
         ]);
 
         $exists = Ride::where(['pickup_location'=> $request->pickup_location, 'destination_location' => $request -> destination_location, 'user_id' => $token -> user_id]) -> first();
-
+        
         if (!$exists){
             Ride::create([
                 'pickup_location' => $request->pickup_location,
@@ -36,18 +37,29 @@ class RidesController extends Controller
                 'message' => 'Request created successfully'
             ]);
         } else {
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'Request already exists'
-            ]);
+            if ($exists->status === "cancelled"){
+                $exists->update([
+                    "status" => "accepted"
+                ]);
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Request created successfully'
+                ]);
+                
+            }else{
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'Request already exists'
+                ]);
+            }
         }
     }
 
-    public function cancelRideRequest(Request $request){ // CANCEL REQUEST NOT DELETE REQUEST
+    public function cancelRideRequest(Request $request){ 
         $request -> validate([
             'ride_id' => 'required|integer'
         ]);
-        $token = Auth::user();
+        $token = Auth::user();        
 
         $exists = Ride::where(['pickup_location'=> $request->pickup_location, 'destination_location' => $request -> destination_location, 'user_id' => $token -> user_id]) -> first(); // validate if there is a request by this user
 
@@ -76,36 +88,38 @@ class RidesController extends Controller
         }
     }
 
+    public function acceptRideRequest(Request $request){
+        // the driver which is accepting
+        // the ride id we are adding the driver to
+        // change status to accepted
+        $user = Auth::user();
 
-        // 'driver_id' => ???  when driver accepts 
-        // 'accepted_at' => when driver accepts
-        public function acceptRide(Request $request){
-            // the driver which is accepting
-            // the ride id we are adding the driver to
-            // change status to accepted
-            $user = Auth::user();
+        if ($user && $user -> role_id == 2){ // validate user's role
+            $driver = Driver::where('user_id', $user->user_id) ->get(); // get the user in drivers table
 
-            if ($user && $user -> role_id == 2){ // validate user's role
-                $driver = Driver::where('user_id', $user->user_id) ->get(); // get the user in drivers table
+            if ($driver){ // check if driver exists in table - get the driver_id of this driver
+                Ride::where('ride_id', $request -> ride_id)->update([
+                    "status" => "accepted",
+                    "driver_id" => $driver[0] -> driver_id,
+                    "accepted_at" => now(),
+                ]);
+                return response() -> json([
+                    "status" => "success",
+                    "message" => "Ride accepted"
+                ]);
 
-                if ($driver){ // check if driver exists in table - get the driver_id of this driver
-                    Rides::where('ride_id', $request -> ride_id)->update([
-                        "status" => "accepted",
-                        "driver_id" => $driver -> driver_id,
-                        "accepted_at" => now(),
-                    ]);
-                } else {
-                    return response() -> json([
-                        "status" => "failed",
-                        "message" => "Driver not found"
-                    ]);
-                }
             } else {
                 return response() -> json([
                     "status" => "failed",
-                    "message" => "Unauthorized"
+                    "message" => "Driver not found"
                 ]);
             }
-            
+        } else {
+            return response() -> json([
+                "status" => "failed",
+                "message" => "Unauthorized"
+            ]);
         }
+        
+    }
 }
