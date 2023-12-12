@@ -30,3 +30,4 @@ Route::controller(AuthController::class)->group(function () {
 Route::post('/createdriver',[DriversController::class,'createDriver']);
 Route::post('/readdriver',[DriversController::class,'readDriver']);
 Route::post('/updateDriverStatus',[DriversController::class,'updateDriverStatus']);
+Route::post('/deleteDriver',[DriversController::class,'deleteDriver']);

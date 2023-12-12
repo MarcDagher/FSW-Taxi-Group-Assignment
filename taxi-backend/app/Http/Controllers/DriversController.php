@@ -99,5 +99,28 @@ class DriversController extends Controller
                 return response()->json(['error'=>'Unauthorized'],401);
             }
     }
+    public function deleteDriver(Request $request)
+{
+    if (Auth::check()) {
+        $user = Auth::user();
+
+        if ($user && $user->role_id == 1) {
+            $id_driver = $request->driver_id;
+            $driver = Driver::find($id_driver);
+
+            if ($driver) {
+                $driver->delete(); 
+
+                return response()->json(['message' => 'Driver deleted successfully']);
+            } else {
+                return response()->json(['error' => 'Driver not found.'], 404);
+            }
+        } else {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+    } else {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+}
     
 }
