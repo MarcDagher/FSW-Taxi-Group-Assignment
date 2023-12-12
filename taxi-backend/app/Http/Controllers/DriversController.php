@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class DriversController extends Controller
 {
-    public function __construct()
-{
-    $this->middleware('auth');
-}
+//     public function __construct()
+// {
+//     $this->middleware('auth');
+// }
 
 
 
@@ -50,7 +50,7 @@ class DriversController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
 
-            if ($user && $user->role_id == 1) {
+            if ($user && ($user->role_id == 1 || $user->role_id == 2)) {
                 $driver = Driver::find($request->input('driver_id'));
 
                 if (!$driver) {
@@ -70,6 +70,11 @@ class DriversController extends Controller
         } else {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+    }
+
+    public function index(){
+        $driver = Driver::all();
+        return response()->json(['message' => $driver]);
     }
     public function updateDriverStatus(Request $req){
         if (Auth::check()) {

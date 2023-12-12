@@ -27,7 +27,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 
 });
-Route::post('/createdriver',[DriversController::class,'createDriver']);
-Route::post('/readdriver',[DriversController::class,'readDriver']);
-Route::post('/updateDriverStatus',[DriversController::class,'updateDriverStatus']);
-Route::post('/deleteDriver',[DriversController::class,'deleteDriver']);
+
+
+
+Route::controller(DriversController::class)->group(function () {
+Route::post('/createDriver','createDriver');
+Route::post('/readDriver','readDriver');
+Route::post('/updateDriverStatus','updateDriverStatus');
+Route::post('/deleteDriver','deleteDriver');
+Route::get('/drivers','index');
+
+});
