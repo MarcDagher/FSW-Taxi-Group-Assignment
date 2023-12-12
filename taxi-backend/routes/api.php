@@ -20,15 +20,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/signup', [UsersController::class, 'createUser']);
-Route::post('/delete', [UsersController::class, 'deleteUser']);
-Route::post('/update', [UsersController::class, 'updateUser']);
-Route::post('/read', [UsersController::class, 'displayUser']);
+Route::post('/signup', [UsersController::class, 'createUser']); // for testing (marc)
+Route::post('/delete', [UsersController::class, 'deleteUser']); // for testing (marc)
+Route::post('/update', [UsersController::class, 'updateUser']); // for testing (marc)
+Route::post('/read', [UsersController::class, 'displayUser']); // for testing (marc)
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
-    Route::post('register', 'register');
-    Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
+Route::post('login', 'login');
+Route::post('register', 'register');
+Route::post('logout', 'logout');
+Route::post('refresh', 'refresh');
 
 });
