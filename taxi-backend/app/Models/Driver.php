@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Driver extends Model 
 {
+    public $timestamps = false;
     use HasFactory;
 
-    public $timestamps = false;
     protected $primaryKey = 'driver_id';
-    protected $fillable=["driver_id","driver_license","age","user_id"];
+    protected $fillable=["driver_id","driver_license","age","user_id", "driver_status"];
 
 }

@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class DriversController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware('auth');
+}
+
+
+
     public function createDriver(Request $request)
     {
         $request->validate([
@@ -64,41 +71,33 @@ class DriversController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
     }
-    public function updateDriverStatus(Request $request)
-{
-    $request->validate([
-        'driver_id' => 'required|integer',
-        'status' => 'required|in:verified,unverified',
-    ]);
-
-    if (Auth::check()) {
-        $user = Auth::user();
-
-        if ($user && $user->role_id == 1) {
-            $driver = Driver::find($request->driver_id);
-
-            if (!$driver) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => 'Driver not found.',
-                ], 404);
+    public function updateDriverStatus(Request $req){
+        if (Auth::check()) {
+            $user = Auth::user();
+            
+            if ($user && $user->role_id == 1) {
+            $id_driver = $req->driver_id;
+            $driver = Driver::find($id_driver);
+            if ($driver) {
+                $updateFields = [
+                    'driver_status' => $req->driver_status,
+        ];
+        
+        $driver->update($updateFields);
+        
+        
+        return response()->json(['message' => 'Driver updated successfully']);
+          }else{
+                return response()->json(['error'=>'Unauthorized'],401);
             }
-
-            $driver->update([
-                'status' => $request->driver_status,
-            ]);
-
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Driver status updated successfully',
-                'driver' => $driver,
-            ]);
-        } else {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-    } else {
-        return response()->json(['error' => 'Unauthorized'], 401);
+        
+        
+            }else{
+                return response()->json(['error'=>'Unauthorized'],401);
+            }
+        }else{
+                return response()->json(['error'=>'Unauthorized'],401);
+            }
     }
-}
-
+    
 }
