@@ -43,8 +43,6 @@ class UsersController extends Controller
     public function updateUser(Request $request){ // Authorize email
         
         $token = Auth::user();
-        echo $token -> email;
-        
         if ($token -> email == $request -> email){
             $user = User::where('email', $request -> email) -> first();
     
@@ -52,8 +50,11 @@ class UsersController extends Controller
                 $user -> update([
                     "first_name" => $request->first_name ?? $user->first_name,
                     "last_name" => $request->last_name ?? $user->last_name,
+                    "img" => $request->img ?? $user->img
                 ]);
-                echo "user updated";            
+                return response()->json([
+                    "status" => "success",
+                    "message" => "user updated"]);            
             } else {
                 return response() -> json([
                     'status' => 'failed',
@@ -78,6 +79,7 @@ class UsersController extends Controller
                     "email" => $user->email,
                     "first_name" => $user->first_name,
                     "last_name" => $user->last_name,
+                    "image path" => $user -> img,
                 ]);
             } else {
                 return response() -> json([
