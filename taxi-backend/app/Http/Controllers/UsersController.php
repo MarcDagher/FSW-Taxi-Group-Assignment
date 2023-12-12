@@ -17,7 +17,7 @@ class UsersController extends Controller
 
     public function createUser(Request $request){
 
-        $role_id = $request->role_id;
+        $role_id = $request->role_id; 
 
         if (!$role_id || $role_id == 1){
             return response()->json(
@@ -42,34 +42,36 @@ class UsersController extends Controller
 
     public function deleteUser(Request $request){
 
-        $token = Auth::user();
-        if ($token -> user_id == $request -> user_id){
-            $user = User::where('email', $request -> email) -> first();
-            if($user){
-                $user -> delete();            
-                return response() -> json([
-                    'status' => 'success',
-                    'message' => 'User deleted successfuly',
-                ]);
+        $token = Auth::user(); // Note: error when token -> email is null. Meaning when user doesn't exist
+        echo $token -> email;
 
+            if ($token -> email == $request -> email){
+                $user = User::where('email', $request -> email) -> first();
+                if($user){
+                    $user -> delete();            
+                    return response() -> json([
+                        'status' => 'success',
+                        'message' => 'User deleted successfuly',
+                    ]);
+
+                } else {
+                    return response() -> json([
+                        'status' => 'failed',
+                        'message' => 'User not found',
+                    ]);
+                }
             } else {
                 return response() -> json([
                     'status' => 'failed',
-                    'message' => 'User not found',
+                    'message' => 'Unauthorized',
                 ]);
             }
-        } else {
-            return response() -> json([
-                'status' => 'failed',
-                'message' => 'Unauthorized',
-            ]);
-        }
-        
     }
 
     public function updateUser(Request $request){
         
         $token = Auth::user();
+        echo $token -> email;
         
         if ($token -> email == $request -> email){
             $user = User::where('email', $request -> email) -> first();
@@ -97,14 +99,13 @@ class UsersController extends Controller
     public function displayUser(Request $request){
 
         $token = Auth::user();
-        if ($token -> user_id == $request -> user_id){
+        if ($token -> email == $request -> email){
             $user = User::where('email', $request -> email) -> first();
             if ($user){
                 return response() -> json([
                     "email" => $user->email,
                     "first_name" => $user->first_name,
                     "last_name" => $user->last_name,
-                    ""
                 ]);
             } else {
                 return response() -> json([
