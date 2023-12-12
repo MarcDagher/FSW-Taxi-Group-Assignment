@@ -58,6 +58,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
+            'img' => $request->img,
             'role_id' => $role_id,
         ]);
 
@@ -81,10 +82,6 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
         ]);
     }
 
