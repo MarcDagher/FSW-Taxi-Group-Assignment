@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('ratings', function (Blueprint $table) {
             $table->bigIncrements('rating_id');
             $table->tinyInteger('rating');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('rating_by');
+            $table->unsignedBigInteger('rating_for');
             $table->unsignedBigInteger('ride_id');
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('rating_by')->references('user_id')->on('users');
+            $table->foreign('rating_for')->references('user_id')->on('users');
             $table->foreign('ride_id')->references('ride_id')->on('rides');
         });
     }

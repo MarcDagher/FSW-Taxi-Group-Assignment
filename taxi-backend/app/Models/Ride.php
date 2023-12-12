@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ride extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
 
     protected $primaryKey = "ride_id";
     protected $fillable = [
@@ -20,4 +21,6 @@ class Ride extends Model
         'accepted_at'
     ];  
     
+=======
+>>>>>>> develop
 }
