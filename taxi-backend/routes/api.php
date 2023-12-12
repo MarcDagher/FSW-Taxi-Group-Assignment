@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PassengersRequestsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,15 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/signup', [UsersController::class, 'createUser']); // for testing (marc)
-Route::post('/delete', [UsersController::class, 'deleteUser']); // for testing (marc)
-Route::post('/update', [UsersController::class, 'updateUser']); // for testing (marc)
-Route::post('/read', [UsersController::class, 'displayUser']); // for testing (marc)
-
 Route::controller(AuthController::class)->group(function () {
 Route::post('login', 'login');
 Route::post('register', 'register');
 Route::post('logout', 'logout');
 Route::post('refresh', 'refresh');
-
 });
+
+Route::post('/request', [PassengersRequestsController::class, 'createRequest']);
