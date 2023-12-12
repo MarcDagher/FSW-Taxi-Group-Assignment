@@ -9,16 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class RidesController extends Controller
 {
-    public function createRideRequest(Request $request){ // pickup_location, destination_location, ride_price
-        // get user id from token
-        // get pickup_location, destination_location from request
-        // status is pending by default
+    public function createRideRequest(Request $request){
+
         $token = Auth::user();
 
         $request -> validate([
             'pickup_location' => 'required|string',
             'destination_location' => 'required|string',
-            // 'ride_price' => 'required',
+            'ride_price' => 'required|numeric',
         ]);
 
         $exists = Ride::where(['pickup_location'=> $request->pickup_location, 'destination_location' => $request -> destination_location, 'user_id' => $token -> user_id]) -> first();
@@ -30,8 +28,6 @@ class RidesController extends Controller
                 'status' => $request -> status ?? 'pending',
                 'ride_price' => $request -> ride_price,
                 'user_id' => $token -> user_id,
-                // 'driver_id' => ???  when driver accepts 
-                // 'accepted_at' => when driver accepts
             ]);
     
             return response()->json([
@@ -46,7 +42,7 @@ class RidesController extends Controller
         }
     }
 
-    public function deleteRideRequest(Request $request){
+    public function cancelRideRequest(Request $request){ // CANCEL REQUEST NOT DELETE REQUEST
         $request -> validate([
             'ride_id' => 'required|integer'
         ]);
@@ -58,10 +54,12 @@ class RidesController extends Controller
 
         if ($exists){
             if ($token->user_id == $ride[0]->user_id){
-                Ride::where('ride_id', $ride[0]->ride_id)->delete();
+                Ride::where('ride_id', $ride[0]->ride_id)->update([
+                    'status' => 'cancelled'
+                ]);
                 return response()->json([
                     'status' => 'success',
-                    'message' => "Ride deleted successfully",
+                    'message' => "Ride cancelled successfully",
                 ]);
             } else {
                 return response()->json([
@@ -75,9 +73,16 @@ class RidesController extends Controller
                 'message' => "Ride doesn't exist",
             ]);
         }
-
-
-        
-
     }
+
+
+        // 'driver_id' => ???  when driver accepts 
+        // 'accepted_at' => when driver accepts
+        public function acceptRide(Request $request){
+            // the driver which is accepting
+            // the ride id we are adding the driver to
+            // change status to accepted
+
+            
+        }
 }

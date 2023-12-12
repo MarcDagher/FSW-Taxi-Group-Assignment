@@ -28,4 +28,4 @@ Route::post('refresh', 'refresh');
 });
 
 Route::post('/request_ride', [RidesController::class, 'createRideRequest']);
-Route::post('/delete_ride', [RidesController::class, 'deleteRideRequest']);
+Route::post('/cancel_ride', [RidesController::class, 'cancelRideRequest']);
