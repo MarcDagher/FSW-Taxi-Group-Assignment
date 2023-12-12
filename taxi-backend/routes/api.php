@@ -4,6 +4,7 @@ use App\Http\Controllers\RatingsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DriversController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,16 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
+
+});
+
+
+Route::controller(DriversController::class)->group(function () {
+Route::post('/createDriver','createDriver');
+Route::post('/readDriver','readDriver');
+Route::post('/updateDriverStatus','updateDriverStatus');
+Route::post('/deleteDriver','deleteDriver');
+Route::get('/drivers','index');
 
 });
 
