@@ -14,15 +14,19 @@ class RatingsController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            //check if rating.user_id equal to $user->user_id
-            $rating = Rating::where('user_id', $user->user_id)
-            ->where('rating_for', $request->rating_for)
-            ->get();
+            // //checking if rating already rated
+            // $rating = Rating::where('user_id', $user->user_id)
+            // ->where('rating_for', $request->rating_for)
+            // ->get();
 
-            if($rating->count() > 0){
-                return response()->json(['message' => 'You have already rated this ride'], 422);
-            }
+            // if($rating->count() > 0){
+            //     return response()->json([
+            //         'status' => 'failed',
+            //         'message' => 'You have already rated this ride'
+            //     ], 422);
+            // }
 
+            //checking for the ride if found
             $ride = Ride::where('user_id', $user->user_id)
                 ->where('ride_id', $request->ride_id)
                 ->get();
@@ -31,7 +35,7 @@ class RatingsController extends Controller
             if ($ride->count() > 0) {
                 $rating = new Rating();
                 $rating->rating = $request->rating;
-                $rating->rating_by = $request->user_id;
+                $rating->rating_by = $user->user_id;
                 $rating->rating_for = $request->rating_for;
                 $rating->ride_id = $request->ride_id;
                 $rating->save();

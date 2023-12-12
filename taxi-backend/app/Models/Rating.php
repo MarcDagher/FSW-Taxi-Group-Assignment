@@ -10,7 +10,6 @@ class Rating extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-       'rating_id',
        'rating',
        'rating_by',
        'rating_for',
