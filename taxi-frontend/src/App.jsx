@@ -1,14 +1,16 @@
-import { useState } from 'react'
-import Button from './components/ui/button'
-import './App.css'
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
+import Button from "./components/ui/button";
+import Header from "./components/ui/header";
+import "./App.css";
 
 function App() {
+    return (
+        <>
 
-  return (
-    <Button>
-     Click Me
-    </Button>
-  )
+            <Header />
+        </>
+    );
 }
 
-export default App
+export default App;
