@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PassengersRequestsController;
+use App\Http\Controllers\RidesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +27,5 @@ Route::post('logout', 'logout');
 Route::post('refresh', 'refresh');
 });
 
-Route::post('/request', [PassengersRequestsController::class, 'createRequest']);
+Route::post('/request_ride', [RidesController::class, 'createRideRequest']);
+Route::post('/delete_ride', [RidesController::class, 'deleteRideRequest']);
