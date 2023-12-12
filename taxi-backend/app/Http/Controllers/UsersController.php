@@ -15,7 +15,7 @@ class UsersController extends Controller
     // role id = 3 - create/signup for a passenger account 
     // request => "user_id","email","password","first_name","last_name","role_id"
 
-    public function createUser(Request $request){
+    public function createUser(Request $request){ // No authoriaztaion
 
         $role_id = $request->role_id; 
 
@@ -40,10 +40,9 @@ class UsersController extends Controller
         }
         }
 
-    public function deleteUser(Request $request){
+    public function deleteUser(Request $request){ // Authorize email
 
         $token = Auth::user(); // Note: error when token -> email is null. Meaning when user doesn't exist
-        echo $token -> email;
 
             if ($token -> email == $request -> email){
                 $user = User::where('email', $request -> email) -> first();
@@ -68,7 +67,7 @@ class UsersController extends Controller
             }
     }
 
-    public function updateUser(Request $request){
+    public function updateUser(Request $request){ // Authorize email
         
         $token = Auth::user();
         echo $token -> email;
@@ -96,7 +95,7 @@ class UsersController extends Controller
         }
     }
 
-    public function displayUser(Request $request){
+    public function displayUser(Request $request){ // Authorize email
 
         $token = Auth::user();
         if ($token -> email == $request -> email){
