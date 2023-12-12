@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->bigInteger('role_id');
+            $table->string('img');
             $table->foreign('role_id')->references('role_id')->on('roles');
+            $table->timestamps();
         });
     }
 
