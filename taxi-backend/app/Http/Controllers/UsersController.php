@@ -12,33 +12,6 @@ use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class UsersController extends Controller
 {
-    // role id = 3 - create/signup for a passenger account 
-    // request => "user_id","email","password","first_name","last_name","role_id"
-
-    public function createUser(Request $request){ // No authoriaztaion
-
-        $role_id = $request->role_id; 
-
-        if (!$role_id || $role_id == 1){
-            return response()->json(
-                ["status" => "failed",
-                "message" => "Invalid role type"]
-            );
-        } else {
-
-        $request->validate(['email' => 'required|string|email|unique:users', 'password' => 'required|string']);
-            DB::table('users')->insert([
-                'email' => $request -> email,
-                'password' => bcrypt($request -> password),
-                'first_name' => $request -> first_name,
-                'last_name' => $request -> last_name,
-                'role_id' => $role_id]);
-                return response() -> json([
-                    'status' => 'success',
-                    'message' => 'User added successfuly',
-                ]);
-        }
-        }
 
     public function deleteUser(Request $request){ // Authorize email
 
