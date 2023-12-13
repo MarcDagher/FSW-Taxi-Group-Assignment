@@ -9,6 +9,7 @@ import PassengerDashboard from "./pages/Passenger Dashboard";
 import MapPage from "./pages/Map";
 import ErrorPage from "./pages/Error"
 import './App.css'
+import RidesList from "./pages/Driver";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/PassengerDashboard" element={<PassengerDashboard />} />
         <Route path="/map" element={<MapPage/>}/>
         <Route path="/error" element={<ErrorPage/>} />
+        <Route path= "/DriverHomePage" element={<RidesList/>}/>
       </Routes>
     </BrowserRouter>
   )
