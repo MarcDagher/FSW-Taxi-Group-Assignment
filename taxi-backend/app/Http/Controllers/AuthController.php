@@ -31,16 +31,23 @@ class AuthController extends Controller
             ], 401);
             
         }
-
         $user = Auth::user();
-        return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
+        if ($user && $user->role_id == 1 || $user->role_id == 3) {
+            $user = Auth::user();
+            return response()->json([
+                'status' => 'success',
+                'user' => $user,
+                'authorisation' => [
+                    'token' => $token,
+                    'type' => 'bearer',
+                ]
+            ]);
+        }else{
+            Auth::logout();
+            return response()->json(['status'=>'error','message'=>'Driver should login  in the drivers section'], 401);
+        }
+
+        
 
     }
 

@@ -36,5 +36,8 @@ Route::post('/readDriver','readDriver');
 Route::post('/updateDriverStatus','updateDriverStatus');
 Route::post('/deleteDriver','deleteDriver');
 Route::get('/drivers','index');
+Route::post('/loginDriver','loginDriver');
 
 });
+
+
