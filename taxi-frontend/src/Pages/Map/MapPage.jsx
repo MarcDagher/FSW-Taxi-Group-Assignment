@@ -8,7 +8,7 @@ function MapPage() {
   return (
     <>
     <div className="container">
-        <Header/> 
+        <Header Title= {"Pickup Route map"}/> 
         <GoogleApiWrapper/>
     </div>
         <div className="card-wrapper">

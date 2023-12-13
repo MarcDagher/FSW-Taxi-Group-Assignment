@@ -9,6 +9,7 @@ header{
 .mini-logo{
   height: 1px;
   padding-top: 6px;
+  margin-top: 10px;
 }
 
 .links-row{
@@ -33,4 +34,9 @@ header{
   height: 50px;
   width: 50px;
   /* background-color: blue; */
+}
+.title{
+  font-size: 40px;
+  color:  white;
+  margin: auto;
 }
