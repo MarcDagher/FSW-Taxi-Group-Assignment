@@ -42,6 +42,7 @@ Route::controller(DriversController::class)->group(function () {
     Route::post('/updateDriverStatus','updateDriverStatus');
     Route::post('/deleteDriver','deleteDriver');
     Route::get('/drivers','index');
+    Route::post("/loginDriver", 'loginDriver');
 
 });
 

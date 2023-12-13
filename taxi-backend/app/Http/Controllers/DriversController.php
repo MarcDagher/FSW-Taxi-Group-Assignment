@@ -70,7 +70,7 @@ class DriversController extends Controller
         $user = Auth::user();
 
         if ($user->role_id == 2) {
-            $driver = Driver::where('user_id', $user->id)->first();
+            $driver = Driver::where('user_id', $user->user_id)->first();
 
             if ($driver && $driver->driver_status == "verified") {
                 return response()->json([
@@ -81,21 +81,16 @@ class DriversController extends Controller
                         'type' => 'bearer',
                     ]
                 ]);
-            } else {
-                Auth::logout(); // Log out the user if driver_status is not "verified"
+            }
+             else {
+                Auth::logout();
                 return response()->json(['status' => 'error', 'message' => "Your account is not verified. Please verify your email."], 403);
             }
-        }
-
-        return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
+    
+    }else{
+        return response()->json(['message'=>'User is not a driver'], 403);
     }
+}
     public function readDriver(Request $request)
     {
         if (Auth::check()) {

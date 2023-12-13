@@ -71,15 +71,15 @@ class AuthController extends Controller
             return response()->json(['error' => 'Wrong format', 'details' => $e->errors()]);
         }
         
-        $role_id = $request->role_id ? $request->role_id : 3;
-
+        
+        
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'img' => $request->img,
-            'role_id' => $role_id,
+            'role_id' => 3,
         ]);
 
         return response()->json([
