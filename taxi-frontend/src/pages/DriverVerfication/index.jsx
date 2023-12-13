@@ -6,7 +6,7 @@ function DriverVerification(){
  
         <div>
         <HeaderHome/>
-        <LogoTextComponent text1={"Request is sent, waiting for a driver to accept"} text2={"Estimated wait time: 5-10mins" }/> 
+        <LogoTextComponent text1={"Currently Your profile is under review by admin"} text2={"We’ll contact you soon" }/> 
         </div>
     )
 }

@@ -7,6 +7,7 @@ import Admin from "./pages/Admin";
 import DriverVerification from "./pages/DriverVerfication"
 import PassengerRequest from "./pages/PassengerRequest"
 import Drivereview from "./pages/DriverReview"
+import DriverProfile from "./pages/DriverProfile"
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/DriverVerification" element={<DriverVerification/>} />
         <Route path="/PassengerRequest" element={<PassengerRequest/>} />
         <Route path="/Drivereview" element={<Drivereview/>} />
+        <Route path="/DriverProfile" element={<DriverProfile/>} />
         <Route path="*" element={<>404 page not found</>} />
       </Routes>
     </BrowserRouter>
