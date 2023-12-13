@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PassengersController;
 use App\Http\Controllers\RatingsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,3 +44,7 @@ Route::post('/loginDriver','loginDriver');
 Route::controller(RatingsController::class)->group(function(){
     Route::post('addRating', 'addRating');
 });
+Route::post('/signup', [PassengersController::class, 'createPassenger']);
+Route::post('/delete', [PassengersController::class, 'deletePassenger']);
+Route::post('/update', [PassengersController::class, 'updatePassenger']);
+Route::post('/read', [PassengersController::class, 'readPassenger']);
