@@ -8,14 +8,14 @@
     overflow: hidden;
     color: #544B4C;
 }
-h1{
+.form-title{
     font-size: 140px;
     margin-bottom: 35px;
 }
-h3{
+.form-text{
     font-size: 45px;
     margin-bottom: 15px;
 }
-p{
+.form-desc{
  font-size: 25px;
 }
