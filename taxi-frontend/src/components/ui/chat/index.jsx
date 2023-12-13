@@ -3,7 +3,9 @@ import "./index.css"
 const Chat = () => {
 
   return <>
-    <p>Hello</p>
+    <div className="wrapper">
+        <p>Hello</p>
+    </div>
   
   </>
 }

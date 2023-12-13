@@ -6,9 +6,8 @@ import Button from "../../components/ui/button"
 const PassengerDashboard = () => {
 
   return <>
-  <div className="wrapper">
     <Header />
-  
+  <div className="wrapper">
       <div className="box">
         <div className="inputs-col">
           <div className="text-col">

@@ -1,0 +1,25 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  height: 89vh;
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.chat-input{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-input > input{
+  width: 80%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(170, 163, 164, 0.753)
+}

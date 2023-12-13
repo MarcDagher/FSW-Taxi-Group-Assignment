@@ -17,12 +17,13 @@
   align-items: center;
   width: 100%;
   max-width: 450px;
-  height: 430px;
+  height: 500px;
   outline: 2px solid var(--dark);
   border: none;
   border-radius: 15px;
   margin: 0 auto;
   padding: 30px 0;
+  margin-top: 45px;
   gap: 20px;
 }
 

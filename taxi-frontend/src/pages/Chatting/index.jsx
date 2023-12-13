@@ -8,10 +8,17 @@ const Chatting = () => {
   return <>
 
       <Header />
-      <Chat />
-
+      <div className="wrapper">
+        <Chat />    
+        {/* <ChatInput /> */}
+        <div className="chat-input">
+          <input type="text" name="message" placeholder="Type your message here"/>
+          <div className="img-container">
+            <img src="public/send_logo.svg" alt="send" />
+          </div>
+        </div>
+      </div>
     </>
-  
 }
 
 
