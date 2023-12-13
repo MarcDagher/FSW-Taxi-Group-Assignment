@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import DriverVerification from "./pages/DriverVerfication"
 import PassengerRequest from "./pages/PassengerRequest"
+import Drivereview from "./pages/DriverReview"
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
@@ -15,8 +16,9 @@ function App() {
       <Routes> 
         <Route path="/" index element={<Home />} />
         <Route path="/admin"  element={<Admin />} />
-        <Route path="/DriverVerification" element={<DriverVerification />} />
-        <Route path="/PassengerRequest" element={<PassengerRequest />} />
+        <Route path="/DriverVerification" element={<DriverVerification/>} />
+        <Route path="/PassengerRequest" element={<PassengerRequest/>} />
+        <Route path="/Drivereview" element={<Drivereview/>} />
         <Route path="*" element={<>404 page not found</>} />
       </Routes>
     </BrowserRouter>
