@@ -6,7 +6,7 @@ import './Welcome.css'
 
 
     return (
-        <h1>Welcome {welcome}</h1>
+        <h1 className='driver-title'>Welcome {welcome}</h1>
     );
 }
 
