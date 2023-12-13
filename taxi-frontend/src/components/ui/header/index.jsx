@@ -1,12 +1,6 @@
-import { useState } from 'react'
 import './index.css'
 
 const Header = () => {
-  // const [isExpanded, setIsExpanded] = useState(false)
-
-  // // const handleClick = () =>{
-  // //   setIsExpanded(!isExpanded)
-  // // }
   
   return <header>
     <div className="mini-logo">
