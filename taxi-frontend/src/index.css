@@ -19,6 +19,9 @@ body {
     font-family: "Oldenburg", serif;
 }
 
+input, select, input::placeholder{
+    font-family: "Oldenburg", serif;
+}
 button {
     padding: 15px 25px;
     font-family: "Oldenburg", serif;

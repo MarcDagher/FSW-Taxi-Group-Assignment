@@ -1,54 +1,55 @@
-header{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 25px var(--main-x-padding);
-
-}
-
-.menu{
-  position:absolute;
-  z-index: 2;
-  background-color: var(--dark);
-  padding: 30px;
-}
-
-.hamburger-list{
+.form{
   position: relative;
-  width: 50px;
-  height: 50px;
-  gap: 8px;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.hamburger-list span{
-  position: absolute;
-  width: 80%;
-  height: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border: 2px solid var(--dark);
   border-radius: 12px;
-  background-color: var(--dark);
-  left: 50%;
-  transform: translate(-50%);
-  transition: all .15s ease-in-out;
+  padding: 70px 50px 20px  50px;
+  width: 500px;
 }
 
-.hamburger-list span:nth-child(1){
-  top: 10px;
-}.hamburger-list span:nth-child(2){
-  top: 20px;
-}.hamburger-list span:nth-child(3){
-  top: 30px;
+.form input, select{
+  padding: 15px;
+  width: 100%;
+  font-size: 1rem;
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid var(--dark);
+}
+.form input:focus{
+  border: 1px solid white, 1px solid var(--dark)
+}
+.form h1{
+  position: absolute;
+  top:-60px;
+  padding: 5px;
+  font-size: 5rem;
+  color: var(--dark);
+  background-color:white;
 }
 
-.hamburger-list.active-list span:nth-child(1){
-  transform: translate(-50%,15px) rotate(40deg);
-}.hamburger-list.active-list span:nth-child(2){
-  transform: translateX(-200%);
-}.hamburger-list.active-list span:nth-child(3){
-  transform: translate(-50%, -5px) rotate(-40deg)
+.form p{
+  font-size: 1.2rem;
+  align-self: flex-start; 
 }
 
-.profile-pic{
-  cursor: pointer;
+.form .form-small{
+  font-size: .8rem;
+  margin-bottom: 10px;
+}
+
+.form-small a{
+  color: var(--red);
+}
+
+.form-inner{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.form-inner label{
+  width: 80%;
 }
