@@ -1,22 +1,41 @@
-<<<<<<< HEAD
+import React from "react";
+import HeaderHome from "../../components/ui/header";
+import arrow from "../../assets/arrow.svg"
+import logo from "../../assets/4.png"
+import Button from "../../components/ui/button";
+import './index.css';
 
 
+function Home(){
 
+    return (
+      <>
+      <HeaderHome/>
+      <div className="homePage">
 
-function HomePage(){
+        <div className="homeBody">
 
-    return "Hello World"
+          <div className="leftSide">
+          <h1>Taxina</h1>
+          <p>Explore all of Lebanon, anytime in affordable prices.</p>
+          </div>
+
+          <div className="rightSide">
+            <img src={logo} alt="" />
+          </div>
+
+        </div>
+
+        </div>
+        <div className="buttonBody">
+       <Button>Create Account</Button>
+        </div>
+        <div className="arrowDown">
+          <img src={arrow} alt="" width={40} />
+          <img src={arrow} alt="" width={40} />
+        </div>
+      </>
+    )
 }
 
-export default HomePage;
-=======
-import './index.css'
-
-const Home = () => {
-  return <> 
-    Home
-  </>
-}
-
-export default Home
->>>>>>> ui
+export default Home;

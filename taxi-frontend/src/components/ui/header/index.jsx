@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './index.css'
 
-const Header = () => {
+const HeaderHome = () => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const handleClick = () =>{
@@ -21,4 +21,4 @@ const Header = () => {
   </header>
 }
 
-export default Header
+export default HeaderHome;
