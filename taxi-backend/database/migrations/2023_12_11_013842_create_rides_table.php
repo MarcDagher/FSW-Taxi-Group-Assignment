@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('pickup_location');
             $table->string('destination_location');
             $table->enum('status', ['pending', 'accepted', 'cancelled']);
-            $table->decimal('ride_price', 3, 2);
+            $table->decimal('ride_price', 5, 2);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('driver_id')->nullable();
             $table->timestamp('accepted_at')->nullable();
