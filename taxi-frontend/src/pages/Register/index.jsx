@@ -6,7 +6,7 @@ import Form from "../../components/ui/form";
 import Button from "../../components/ui/button";
 import Header from "../../components/ui/header";
 
-import sloganPng from "../../assets/slogan.png";
+import sloganPng from "../../assets/sloganPng.png"
 
 const Login = () => {
     const [credentials, setCredentials] = useState({

@@ -18,7 +18,6 @@ class RidesController extends Controller
         $request -> validate([
             'pickup_location' => 'required|string',
             'destination_location' => 'required|string',
-            'ride_price' => 'required|numeric',
         ]);
 
         $exists = Ride::where(['pickup_location'=> $request->pickup_location, 'destination_location' => $request -> destination_location, 'user_id' => $token -> user_id]) -> first();
@@ -28,7 +27,7 @@ class RidesController extends Controller
                 'pickup_location' => $request->pickup_location,
                 'destination_location' => $request -> destination_location,
                 'status' => $request -> status ?? 'pending',
-                'ride_price' => $request -> ride_price,
+                'ride_price' => random_int(1,25),
                 'user_id' => $token -> user_id,
             ]);
     
@@ -59,11 +58,15 @@ class RidesController extends Controller
         $request -> validate([
             'ride_id' => 'required|integer'
         ]);
+        if(!Auth::check()){
+            return response()->json(['error' => 'user unauthenticated']);
+        }
         $token = Auth::user();        
 
-        $exists = Ride::where(['pickup_location'=> $request->pickup_location, 'destination_location' => $request -> destination_location, 'user_id' => $token -> user_id]) -> first(); // validate if there is a request by this user
-
+        $exists = Ride::where(['pickup_location'=> $request->pickup_location, 'destination_location' => $request -> destination_location, 'user_id' => $token -> user_id]) -> first(); 
+        
         $ride = Ride::where(['pickup_location'=> $request->pickup_location, 'destination_location' => $request -> destination_location, 'user_id' => $token -> user_id]) -> get();
+
 
         if ($exists){
             if ($token->user_id == $ride[0]->user_id){
@@ -122,19 +125,20 @@ class RidesController extends Controller
 
 
     public function readRides () {
-        $user = Auth::user();
-
-        if ($user && $user -> role_id == "2"){
-            $rides = Ride::where("status", "pending")->get();
-            return response()->json([
-                "status" => "success",
-                "rides" => $rides
-            ]);
-        } else {
-            return response() -> json([
-                "status" => "failed",
-                "message" => "Unauthorized"
-            ]);
-        }
+       
+            $user = Auth::user();
+            if ($user && $user -> role_id == 2){
+                $rides = Ride::where("status", "pending")->get();
+                return response()->json([
+                    "status" => "success",
+                    "rides" => $rides
+                ]);
+            } else {
+                return response() -> json([
+                    "status" => "failed",
+                    "message" => "Unauthorized"
+                ]);
+            }
+        
     } 
 }
