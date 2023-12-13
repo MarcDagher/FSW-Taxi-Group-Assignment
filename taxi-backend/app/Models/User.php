@@ -12,7 +12,6 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
-<<<<<<< HEAD
     protected $primaryKey = "user_id";
     protected $fillable = [
         'first_name',
@@ -21,17 +20,6 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'img',
         'role_id'
-=======
-    
-    protected $primaryKey = 'user_id';
-
-    protected $fillable = [
-        'email',
-        'password',
-        'first_name',
-        'last_name',
-        'role_id',
->>>>>>> Drivers-CRUD
     ];
     protected $hidden = [
         'password',
@@ -44,21 +32,13 @@ class User extends Authenticatable implements JWTSubject
 
     public function getJWTIdentifier()
     {
-<<<<<<< HEAD
-        return $this->user_id;
-=======
         return $this->user_id; 
->>>>>>> Drivers-CRUD
     }
 
     public function getJWTCustomClaims()
     {
         return [
-<<<<<<< HEAD
-            'user_id' => $this->user_id,
-=======
             'user_id' => $this->user_id
->>>>>>> Drivers-CRUD
         ];
     }
 
