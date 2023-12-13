@@ -1,11 +1,22 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = "http//127.0.0.1/api"
+axios.defaults.baseURL = "http://127.0.0.1:8000/api";
 
-export const request = async ({route, method = "GET", body}) =>{
-    const response = await axios.request({
-      url: route, 
-      method: method, 
-      data: body,})
-    return response
-}
+export const request = async ({ route, method = "GET", body, token }) => {
+    try{
+      const response = await axios.request({
+          url: route,
+          method: method,
+          data: body,
+          headers: {
+              "Content-Type": "application/json", // Adjust as needed
+              "Authorization": `Bearer ${token}`
+          },
+      });
+      return response;  
+    } catch(e){
+      console.log("Error in API Request");
+    }
+};
+
+export default request
