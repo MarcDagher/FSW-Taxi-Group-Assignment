@@ -4,15 +4,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 15vh;
     overflow: hidden;
+    color: #544B4C;
 }
 h1{
     font-size: 140px;
     margin-bottom: 30px;
 }
-h2{
+h3{
     font-size: 45px;
 }
 p{
- font-size: 35px;
+ font-size: 25px;
 }
