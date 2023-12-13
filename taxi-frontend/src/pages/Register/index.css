@@ -5,4 +5,31 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  color: var(--dark);
+}
+
+.auth select{
+  color:var(--dark)
+}
+
+.auth-left{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex:1.5;
+}
+
+.auth-right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height:100vh;
+  background: linear-gradient(196deg, #F84A43 -7.58%, #FFF 98.66%);
+}
+
+@media (max-width: 1050px){
+  .auth-right{
+    display: none;
+  }
 }

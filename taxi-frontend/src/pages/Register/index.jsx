@@ -6,6 +6,8 @@ import Form from "../../components/ui/form";
 import Button from "../../components/ui/button";
 import Header from "../../components/ui/header";
 
+import sloganPng from "../../assets/slogan.png";
+
 const Login = () => {
     const [credentials, setCredentials] = useState({
         email: "",
@@ -29,79 +31,84 @@ const Login = () => {
 
     return (
         <>
-        <Header/>
+            <Header />
             <div className="auth">
-                <Form title={"Join Us"}>
-                    <input
-                        type="text"
-                        name="email"
-                        placeholder="Email"
-                        onChange={handleChange}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        onChange={handleChange}
-                    />
-                    <div className="form-inner">
+                <div className="auth-left">
+                    <Form title={"Join Us"}>
                         <input
                             type="text"
-                            name="firstname"
-                            placeholder="First Name"
+                            name="email"
+                            placeholder="Email"
                             onChange={handleChange}
                         />
                         <input
-                            type="text"
-                            name="lastname"
-                            placeholder="Last Name"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
                             onChange={handleChange}
                         />
-                    </div>
-                    <div className="form-inner">
-                        <label htmlFor="img">Profile picture</label>
-                        <input type="file" name="img" id="img" />
-                    </div>
-
-                    <select name="role" id="role" onChange={handleChange}>
-                        <option value="null">Select your role</option>
-                        <option value="passenger">Passenger</option>
-                        <option value="driver">Driver</option>
-                    </select>
-
-                    {credentials.role === "driver" && (
-                        <>
+                        <div className="form-inner">
                             <input
-                                type="number"
-                                name="age"
-                                id="age"
-                                placeholder="Age (min:18)"
-                                min={18}
+                                type="text"
+                                name="firstname"
+                                placeholder="First Name"
                                 onChange={handleChange}
                             />
-                            <div className="form-inner">
-                                <label htmlFor="driver_license">
-                                    Driver License
-                                </label>
-                                <input
-                                    type="file"
-                                    name="driver_license"
-                                    id="driver_license"
-                                />
-                            </div>
-                        </>
-                    )}
-                    <p className="form-small">
-                        Already have an account?{" "}
-                        <span>
-                            <Link to={"/login"}>Login</Link>
-                        </span>
-                    </p>
+                            <input
+                                type="text"
+                                name="lastname"
+                                placeholder="Last Name"
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="form-inner">
+                            <label htmlFor="img">Profile picture</label>
+                            <input type="file" name="img" id="img" />
+                        </div>
 
-                    <div onClick={handleSubmit}>
-                        <Button>Register Account</Button>
-                    </div>
-                </Form>
+                        <select name="role" id="role" onChange={handleChange}>
+                            <option value="null">Select your role</option>
+                            <option value="passenger">Passenger</option>
+                            <option value="driver">Driver</option>
+                        </select>
+
+                        {credentials.role === "driver" && (
+                            <>
+                                <input
+                                    type="number"
+                                    name="age"
+                                    id="age"
+                                    placeholder="Age (min:18)"
+                                    min={18}
+                                    onChange={handleChange}
+                                />
+                                <div className="form-inner">
+                                    <label htmlFor="driver_license">
+                                        Driver License
+                                    </label>
+                                    <input
+                                        type="file"
+                                        name="driver_license"
+                                        id="driver_license"
+                                    />
+                                </div>
+                            </>
+                        )}
+                        <p className="form-small">
+                            Already have an account?{" "}
+                            <span>
+                                <Link to={"/login"}>Login</Link>
+                            </span>
+                        </p>
+
+                        <div onClick={handleSubmit}>
+                            <Button>Register Account</Button>
+                        </div>
+                    </Form>
+                </div>
+                <div className="auth-right">
+                    <img src={sloganPng} alt="" />
+                </div>
             </div>
         </>
     );
