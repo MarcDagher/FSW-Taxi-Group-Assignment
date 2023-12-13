@@ -7,6 +7,7 @@ import Admin from "./pages/Admin";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PassengerDashboard from "./pages/Passenger Dashboard";
 import MapPage from "./pages/Map";
+import ErrorPage from "./pages/Error"
 import './App.css'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="*" element={<>404 page not found</>} />
         <Route path="/PassengerDashboard" element={<PassengerDashboard />} />
         <Route path="/map" element={<MapPage/>}/>
+        <Route path="/error" element={<ErrorPage/>} />
       </Routes>
     </BrowserRouter>
   )
