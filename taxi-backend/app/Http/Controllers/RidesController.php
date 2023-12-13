@@ -13,47 +13,53 @@ class RidesController extends Controller
 {
     public function createRideRequest(Request $request){
 
-        $token = Auth::user();
-
-        $request -> validate([
-            'pickup_location' => 'required|string',
-            'destination_location' => 'required|string',
-            'ride_price' => 'required|numeric',
-        ]);
-
-        $exists = Ride::where(['pickup_location'=> $request->pickup_location, 'destination_location' => $request -> destination_location, 'user_id' => $token -> user_id]) -> first();
-        
-        if (!$exists){
-            Ride::create([
-                'pickup_location' => $request->pickup_location,
-                'destination_location' => $request -> destination_location,
-                'status' => $request -> status ?? 'pending',
-                'ride_price' => $request -> ride_price,
-                'user_id' => $token -> user_id,
-            ]);
-    
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Request created successfully'
-            ]);
-        } else {
-            if ($exists->status === "cancelled"){
-                $exists->update([
-                    "status" => "accepted"
-                ]);
-                return response()->json([
-                    'status' => 'success',
-                    'message' => 'Request created successfully'
-                ]);
-                
-            }else{
-                return response()->json([
-                    'status' => 'failed',
-                    'message' => 'Request already exists'
-                ]);
+        if (Auth::check()){
+                $token = Auth::user();
+        }else {
+            return response()-> json([
+                "status" => "failed",
+                "message" => "Unauthorized"
+            ], 401);
             }
-        }
-    }
+
+                $request -> validate([
+                    'pickup_location' => 'required|string',
+                    'destination_location' => 'required|string',
+                ]);
+
+                $exists = Ride::where(['pickup_location'=> $request->pickup_location, 'destination_location' => $request -> destination_location, 'user_id' => $token -> user_id]) -> first();
+                
+                if (!$exists){
+                    Ride::create([
+                        'pickup_location' => $request->pickup_location,
+                        'destination_location' => $request -> destination_location,
+                        'status' => $request -> status ?? 'pending',
+                        'ride_price' => random_int(1,60),
+                        'user_id' => $token -> user_id,
+                    ]);
+            
+                    return response()->json([
+                        'status' => 'success',
+                        'message' => 'Request created successfully'
+                    ]);
+                } else {
+                    if ($exists->status === "cancelled"){
+                        $exists->update([
+                            "status" => "accepted"
+                        ]);
+                        return response()->json([
+                            'status' => 'success',
+                            'message' => 'Request created successfully'
+                        ]);
+                        
+                    }else{
+                        return response()->json([
+                            'status' => 'failed',
+                            'message' => 'Request already exists'
+                        ]);
+                    }
+                }
+            }
 
     public function cancelRideRequest(Request $request){ 
         $request -> validate([
@@ -88,10 +94,7 @@ class RidesController extends Controller
         }
     }
 
-    public function acceptRideRequest(Request $request){
-        // the driver which is accepting
-        // the ride id we are adding the driver to
-        // change status to accepted
+    public function acceptRideRequest(Request $request){ // Driver accepts the ride
         $user = Auth::user();
 
         if ($user && $user -> role_id == 2){ // validate user's role
