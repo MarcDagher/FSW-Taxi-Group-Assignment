@@ -1,0 +1,31 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+.popup {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: row;
+    width: 520px;
+    height: 200px;
+    border: 1px solid #000;
+    border-radius: 15px;
+}
+.leftSideLogo{
+    margin-top: 20px;
+
+}
+
+.rightSidetext{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+}
+p{
+    margin: 10px;
+}
+img{
+    size: 40px;
+}
