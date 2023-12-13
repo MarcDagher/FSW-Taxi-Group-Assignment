@@ -7,7 +7,14 @@ import Admin from "./pages/Admin";
 import Register from './pages/Register'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PassengerDashboard from "./pages/Passenger Dashboard";
+<<<<<<< HEAD
 import Login from "./pages/Login";
+=======
+import MapPage from "./pages/Map";
+import ErrorPage from "./pages/Error"
+import './App.css'
+import RidesList from "./pages/Driver";
+>>>>>>> origin/map-frontend
 
 function App() {
   return (
@@ -18,7 +25,13 @@ function App() {
         <Route path="/login" index element={<Login />} />
         <Route path="/register" index element={<Register />} />
         <Route path="/PassengerDashboard" element={<PassengerDashboard />} />
+<<<<<<< HEAD
         <Route path="*" element={<>404 page not found</>} />
+=======
+        <Route path="/map" element={<MapPage/>}/>
+        <Route path="/error" element={<ErrorPage/>} />
+        <Route path= "/DriverHomePage" element={<RidesList/>}/>
+>>>>>>> origin/map-frontend
       </Routes>
     </BrowserRouter>
   )
