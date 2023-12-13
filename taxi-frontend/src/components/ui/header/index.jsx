@@ -10,7 +10,7 @@ const Header = () => {
       <p>Home</p>
       <p>Profile</p>
       <div className='profile-pic'>
-        <img src="public/profile-placeholder.svg" alt="profile pic" />
+        <img src="public/profile.svg" alt="profile pic" />
       </div>
     </div>
   </header>

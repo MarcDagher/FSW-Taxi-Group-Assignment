@@ -19,7 +19,6 @@ const PassengerDashboard = () => {
               <input type="text" name="pickup" placeholder="Pickup"/>
               <input type="text" name="destintion" placeholder="Destination"/>
           </div>
-          {/* <img src="public/globe.svg" alt="globe"/> */}
         </div>
           <Button>Request</Button>
     </div>

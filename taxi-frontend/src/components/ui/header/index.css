@@ -29,3 +29,8 @@ header{
   color: var(--dark);
 }
 
+.profile-pic{
+  height: 50px;
+  width: 50px;
+  /* background-color: blue; */
+}
