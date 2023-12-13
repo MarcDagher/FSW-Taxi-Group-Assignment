@@ -17,9 +17,8 @@ function App() {
         <Route path="/admin" index element={<Admin />} />
         <Route path="/login" index element={<Login />} />
         <Route path="/register" index element={<Register />} />
-
-        <Route path="*" element={<>404 page not found</>} />
         <Route path="/PassengerDashboard" element={<PassengerDashboard />} />
+        <Route path="*" element={<>404 page not found</>} />
       </Routes>
     </BrowserRouter>
   )

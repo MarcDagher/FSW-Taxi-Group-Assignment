@@ -15,14 +15,14 @@ const Login = () => {
         firstname: "",
         lastname: "",
         role: "",
+        img: "",
     });
 
     const handleChange = (e) => {
         setCredentials((prevCreds) => {
             return { ...prevCreds, [e.target.name]: e.target.value };
         });
-
-        console.log(credentials);
+        console.log(credentials)
     };
 
     const handleSubmit = () => {
@@ -41,12 +41,14 @@ const Login = () => {
                             placeholder="Email"
                             onChange={handleChange}
                         />
+
                         <input
                             type="password"
                             name="password"
                             placeholder="Password"
                             onChange={handleChange}
                         />
+
                         <div className="form-inner">
                             <input
                                 type="text"
@@ -61,18 +63,19 @@ const Login = () => {
                                 onChange={handleChange}
                             />
                         </div>
+
                         <div className="form-inner">
                             <label htmlFor="img">Profile picture</label>
-                            <input type="file" name="img" id="img" />
+                            <input type="file" name="img" id="img" onChange={handleChange}/>
                         </div>
 
                         <select name="role" id="role" onChange={handleChange}>
                             <option value="null">Select your role</option>
-                            <option value="passenger">Passenger</option>
-                            <option value="driver">Driver</option>
+                            <option value="3">Passenger</option>
+                            <option value="2">Driver</option>
                         </select>
 
-                        {credentials.role === "driver" && (
+                        {credentials.role == 2 && (
                             <>
                                 <input
                                     type="number"
@@ -90,6 +93,7 @@ const Login = () => {
                                         type="file"
                                         name="driver_license"
                                         id="driver_license"
+                                        onChange={handleChange}
                                     />
                                 </div>
                             </>

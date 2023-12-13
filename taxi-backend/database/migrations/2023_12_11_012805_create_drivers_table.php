@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->bigIncrements('driver_id');
-            $table->string('driver_license');
+            $table->binary('driver_license');
             $table->integer('age');
             $table->enum('driver_status', ['unverified', 'verified']);
             $table->unsignedBigInteger('user_id');

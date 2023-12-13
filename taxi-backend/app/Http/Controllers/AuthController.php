@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
@@ -17,10 +18,15 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+        try {
+            $request->validate([
+                'email' => 'required|string|email',
+                'password' => 'required|string',
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json(['error' => 'Wrong format', 'details' => $e->errors()]);
+        }
+
         $credentials = $request->only('email', 'password');
 
         $token = Auth::attempt($credentials);
@@ -28,7 +34,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'wrong credentials',
-            ], 401);
+            ]);
             
         }
 
@@ -46,12 +52,18 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'first_name' => 'required|string|min:2',
-            'last_name' => 'required|string|min:2',
-        ]);
+
+        try {
+            $request->validate([
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6',
+                'first_name' => 'required|string|min:2',
+                'last_name' => 'required|string|min:2',
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json(['error' => 'Wrong format', 'details' => $e->errors()]);
+        }
+        
         $role_id = $request->role_id ? $request->role_id : 3;
 
         $user = User::create([

@@ -53,3 +53,9 @@
 .form-inner label{
   width: 80%;
 }
+
+p.form-error{
+  font-size: .8rem;
+  color: var(--red);
+  margin-bottom:-10px;
+}

@@ -1,58 +1,60 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./index.css";
 
 import Header from "../../components/ui/header";
-
 import Form from "../../components/ui/form";
 import Button from "../../components/ui/button";
 
+import { request } from "../../helpers/request_helper";
+
 const Login = () => {
+    const navigate = useNavigate();
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
     });
+    const [showError, setShowError] = useState(false);
 
-    const [isEmailValid, setIsEmailValid] = useState(false);
-
-    const validateEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
-    const showEmailError = (message) => {
-        document.getElementById("email").innerHTML = message;
-    }
     const handleChange = (e) => {
-        if (e.target.type === "email") {
-            setIsEmailValid(validateEmail(e.target.value));
-        }
-
+        setShowError(false);
         setCredentials((prevCreds) => {
             return { ...prevCreds, [e.target.name]: e.target.value };
         });
     };
 
-    const handleSubmit = () => {
-        if (!isEmailValid) {
-            alert('Invalid Email')
+    const handleSubmit = async () => {
+        const response = await request({
+            body: credentials,
+            route: "login",
+            method: "POST",
+        });
+        if (response.data.status === "success") {
+            localStorage.setItem("token", response.data.authorisation.token);
+            return navigate("/passengerDashboard");
+        } else {
+            setShowError(true);
         }
-
-        //TODO Axios adding
-    };
+    }
+    
     return (
         <>
-            <Header/>
+            <Header />
             <div className="auth">
                 <Form title={"Welcome Back!"} buttonText={"Log in"}>
+                    {showError && (
+                        <p className="form-error">Invalid Credentials!</p>
+                    )}
                     <input
-                        type="text"
+                        name="email"
+                        type="email"
                         placeholder="Email"
                         id="email"
                         onChange={handleChange}
                     />
                     <input
+                        name="password"
                         type="password"
                         placeholder="Password"
                         id="password"
@@ -64,7 +66,6 @@ const Login = () => {
                             <Link to={"/register"}>Register</Link>
                         </span>
                     </p>
-
                     <div onClick={handleSubmit}>
                         <Button>Login</Button>
                     </div>
