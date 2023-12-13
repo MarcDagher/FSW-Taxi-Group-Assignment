@@ -45,6 +45,53 @@ class DriversController extends Controller
             'driver' => $driver,
         ]);
     }
+    public function loginDriver(Request $request)
+    {   
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        $token = Auth::attempt($credentials);
+
+        if (!$token) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Wrong credentials',
+            ], 401);
+        }
+
+        $user = Auth::user();
+
+        if ($user->role_id == 2) {
+            $driver = Driver::where('user_id', $user->id)->first();
+
+            if ($driver && $driver->driver_status == "verified") {
+                return response()->json([
+                    'status' => 'success',
+                    'user' => $user,
+                    'authorisation' => [
+                        'token' => $token,
+                        'type' => 'bearer',
+                    ]
+                ]);
+            } else {
+                Auth::logout(); // Log out the user if driver_status is not "verified"
+                return response()->json(['status' => 'error', 'message' => "Your account is not verified. Please verify your email."], 403);
+            }
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
+    }
     public function readDriver(Request $request)
     {
         if (Auth::check()) {
@@ -76,34 +123,25 @@ class DriversController extends Controller
         $driver = Driver::all();
         return response()->json(['message' => $driver]);
     }
-    public function updateDriverStatus(Request $req){
-        if (Auth::check()) {
-            $user = Auth::user();
-            
-            if ($user && $user->role_id == 1) {
-            $id_driver = $req->driver_id;
-            $driver = Driver::find($id_driver);
-            if ($driver) {
-                $updateFields = [
-                    'driver_status' => $req->driver_status,
-        ];
-        
-        $driver->update($updateFields);
-        
-        
-        return response()->json(['message' => 'Driver updated successfully']);
-          }else{
-                return response()->json(['error'=>'Unauthorized'],401);
-            }
-        
-        
-            }else{
-                return response()->json(['error'=>'Unauthorized'],401);
-            }
-        }else{
-                return response()->json(['error'=>'Unauthorized'],401);
-            }
+    public function updateDriverStatus(Request $request)
+{
+    $user = Auth::user();
+
+    if ($user && $user->role_id == 1) {
+        $driver = Driver::find($request->driver_id);
+
+        if ($driver) {
+            $driver->update(['driver_status' => $request->driver_status]);
+
+            return response()->json(['message' => 'Driver updated successfully']);
+        } else {
+            return response()->json(['error' => 'Driver not found.'], 404);
+        }
     }
+
+    return response()->json(['error' => 'Unauthorized'], 401);
+}
+
     public function deleteDriver(Request $request)
 {
     if (Auth::check()) {
