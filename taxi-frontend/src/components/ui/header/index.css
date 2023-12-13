@@ -23,3 +23,9 @@ header{
 .links-row >p{
   color: var(--light);
 }
+
+.links-row >p:hover{
+  cursor: pointer;
+  color: var(--dark);
+}
+
