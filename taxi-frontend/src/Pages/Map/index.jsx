@@ -2,7 +2,7 @@ import React from 'react';
 import GoogleApiWrapper from '../../components/Maps';
 import Header from "../../components/ui/header";
 import Button from '../../components/ui/button';
-import './MapPage.css'  
+import './index.css'  
 
 function MapPage() {
   return (
