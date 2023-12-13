@@ -6,8 +6,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PassengerDashboard from "./pages/Passenger Dashboard";
-import { BrowserRouter , Routes , Route } from "react-router-dom";
-import MapPage from "./Pages/MapPage";
+import MapPage from "./pages/Map/MapPage";
 import './App.css'
 
 function App() {

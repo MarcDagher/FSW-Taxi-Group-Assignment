@@ -7,17 +7,18 @@ class GoogleMap extends Component {
       width: '1200px', 
       height: '700px',
       margin: 'auto',
+      transform: 'translateY(-50px)',
     };
 
     return (
       <Map
         google={this.props.google}
-        zoom={10}
+        zoom={11}
         initialCenter={{ lat: 33.8938, lng: 35.5018 }}
         style={mapStyles} 
       >
-        <Marker position={{ lat: 33.8938, lng: 35.5018 }} label="Rony" />
-        <Marker position={{ lat: 34.1238, lng: 35.6515 }} label="Marc" />
+        <Marker position={{ lat: 33.8938, lng: 35.5018 }} label="Driver" />
+        <Marker position={{ lat: 34.1238, lng: 35.6515 }} label="Passenger" />
       </Map>
     );
   }

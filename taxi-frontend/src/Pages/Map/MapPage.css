@@ -1,0 +1,18 @@
+.container{
+    width: 100%;
+    height: 100vh;
+}
+.card-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 300px;
+    transform: translateX(10px)translateY(-90px);
+}
+.price{
+    font-size: 20px;
+    text-decoration: bold black;
+}
+.margin{
+    margin: 6px;
+    font-size: 22px;
+}
