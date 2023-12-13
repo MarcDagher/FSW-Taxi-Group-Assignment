@@ -89,9 +89,6 @@ class RidesController extends Controller
     }
 
     public function acceptRideRequest(Request $request){
-        // the driver which is accepting
-        // the ride id we are adding the driver to
-        // change status to accepted
         $user = Auth::user();
 
         if ($user && $user -> role_id == 2){ // validate user's role
@@ -122,4 +119,22 @@ class RidesController extends Controller
         }
         
     }
+
+
+    public function readRides () {
+        $user = Auth::user();
+
+        if ($user && $user -> role_id == "2"){
+            $rides = Ride::where("status", "pending")->get();
+            return response()->json([
+                "status" => "success",
+                "rides" => $rides
+            ]);
+        } else {
+            return response() -> json([
+                "status" => "failed",
+                "message" => "Unauthorized"
+            ]);
+        }
+    } 
 }

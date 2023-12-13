@@ -48,4 +48,5 @@ Route::controller(RidesController::class)->group(function(){
     Route::post('/request_ride', 'createRideRequest');
     Route::post('/cancel_ride', 'cancelRideRequest');
     Route::post('/accept_ride', 'acceptRideRequest');
+    Route::post('/read_rides', 'readRides');
 });
