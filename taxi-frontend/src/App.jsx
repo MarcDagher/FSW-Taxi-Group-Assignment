@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Register from './pages/Register'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import PassengerDashboard from "./pages/Passenger Dashboard";
 import Login from "./pages/Login";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" index element={<Register />} />
 
         <Route path="*" element={<>404 page not found</>} />
+        <Route path="/PassengerDashboard" element={<PassengerDashboard />} />
       </Routes>
     </BrowserRouter>
   )
