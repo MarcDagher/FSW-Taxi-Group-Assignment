@@ -22,12 +22,13 @@ header{
   padding-right: 20px;
 }
 
-.links-row >p{
+.links-row >a{
   color: var(--light);
   margin-left: 10px;
+  text-decoration: none;
 }
 
-.links-row >p:hover{
+.links-row >a:hover{
   cursor: pointer;
   color: var(--dark);
 }
@@ -41,4 +42,7 @@ header{
   font-size: 40px;
   color:  white;
   margin: auto;
+}
+a{
+  font-size: 25px;
 }
