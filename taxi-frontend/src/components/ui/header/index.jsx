@@ -8,8 +8,8 @@ const Header =  ({Title}) => {
     </div>
     <div className="title">{Title}</div>
     <div className="links-row">
-      <p>Home</p>
-      <p>Profile</p>
+     <a href="/">Home</a>
+      <a href="/">Profile</a>
       <div className='profile-pic'>
         <img src="public/profile.svg" alt="profile pic" />
       </div>

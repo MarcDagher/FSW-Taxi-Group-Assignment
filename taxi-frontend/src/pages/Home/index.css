@@ -14,9 +14,7 @@
 
 .rightside {
   display: flex;
-  flex-direction: row;
-  width: 50%;
-  height: 50%;
+  
 }
 
 .home-title {

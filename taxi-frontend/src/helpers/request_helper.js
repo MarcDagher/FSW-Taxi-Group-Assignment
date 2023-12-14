@@ -10,7 +10,7 @@ export const request = async ({ route, method = "GET", body }) => {
           method: method,
           data: body,
           headers: {
-              "Content-Type": "application/json", // Adjust as needed
+              "Content-Type": "application/json",
           },
       });
       return response;  
@@ -18,3 +18,5 @@ export const request = async ({ route, method = "GET", body }) => {
       console.log("Error in API Request");
     }
 };
+
+export default request;
