@@ -15,7 +15,7 @@ const Login = () => {
         email: "",
         password: "",
     });
-    const [showError, setShowError] = useState(false);
+    const [showError, setShowError] = useState(null);
 
     const handleChange = (e) => {
         setShowError(false);
@@ -25,7 +25,7 @@ const Login = () => {
     };
 
     const handleSubmit = async () => {
-        const response = await request({
+        let response = await request({
             body: credentials,
             route: "login",
             method: "POST",
@@ -33,18 +33,21 @@ const Login = () => {
         if (response.data.status === "success") {
             localStorage.setItem("token", response.data.authorisation.token);
             return navigate("/passengerDashboard");
-        } else {
-            setShowError(true);
+        } 
+
+        else {
+            setShowError(response.data.message);
+            console.log(response.data)
         }
-    }
-    
+    };
+
     return (
         <>
             <Header />
             <div className="auth">
                 <Form title={"Welcome Back!"} buttonText={"Log in"}>
                     {showError && (
-                        <p className="form-error">Invalid Credentials!</p>
+                        <p className="form-error">{showError}</p>
                     )}
                     <input
                         name="email"
