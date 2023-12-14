@@ -8,14 +8,14 @@
     overflow: hidden;
     color: #544B4C;
 }
-.form-title{
+.error-title{
     font-size: 140px;
     margin-bottom: 35px;
 }
-.form-text{
+.error-text{
     font-size: 45px;
     margin-bottom: 15px;
 }
-.form-desc{
+.error-desc{
  font-size: 25px;
 }
