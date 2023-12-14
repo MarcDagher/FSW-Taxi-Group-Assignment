@@ -1,0 +1,26 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.popup {
+    margin-top: 200px;
+    display: flex;
+    width: 520px;
+    height: 200px;
+    border: 1px solid #000;
+    border-radius: 15px;
+}
+.leftSideLogo{
+    transform: translateY(40px);
+
+}
+
+.rightSidetext{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    transform: translateY(25px);
+}

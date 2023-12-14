@@ -1,5 +1,5 @@
 import Header from "../../components/ui/header";
-import WelcomeDriver from "../../components/Driver/Welcome";
+import WelcomeDriver from "../../components/DriverPopup/Welcome";
 import RideCard from "../../components/Common/card";
 
 
