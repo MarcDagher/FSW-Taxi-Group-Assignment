@@ -1,0 +1,11 @@
+.headerProfile{
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+}
+.headerLogin{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    margin-right: 100px;
+}

@@ -5,11 +5,11 @@ import Register from "./pages/Register";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PassengerDashboard from "./pages/Passenger Dashboard";
 import Login from "./pages/Login";
-import MapPage from "./pages/Map";
 import ErrorPage from "./pages/Error";
 import RidesList from "./Pages/Driver";
 import DriverVerification from './Pages/DriverVerfication'
 import PassengerRequest from "./Pages/PassengerRequest";
+import DriverProfile from "./pages/DriverProfile";
 import "./App.css";
 
 function App() {
@@ -22,8 +22,8 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/DriverVerification" element={<DriverVerification/>} />
                 <Route path="/PassengerRequest" element={<PassengerRequest/>} />
-                <Route path="/map" element={<MapPage />} />
                 <Route path="/DriverHomePage" element={<RidesList />} />
+                <Route path="/DriverProfile" element={<DriverProfile />} />
                 <Route path="/passengerdashboard" element={<PassengerDashboard/>}/>
                 <Route path="*" element={<ErrorPage/>}/>
             </Routes>

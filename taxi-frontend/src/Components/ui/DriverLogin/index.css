@@ -1,0 +1,23 @@
+
+.Profile{
+    display: flex;
+    flex: column;
+    width: 50%;
+    height: 100%;
+}
+.input-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .small-placeholder {
+    font-size: 12px;
+    margin-bottom: 8px; 
+    width: 300px;
+    height: 50px;
+  }
+  .headerProfile{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
