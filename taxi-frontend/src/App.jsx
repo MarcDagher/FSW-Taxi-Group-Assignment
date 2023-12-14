@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import MapPage from "./pages/Map";
 import ErrorPage from "./pages/Error";
 import RidesList from "./pages/Driver";
-import DriverVerification from './Pages/DriverVerfication'
+import DriverRequest from './Pages/DriverRequest'
 import PassengerRequest from "./Pages/PassengerRequest";
 import "./App.css";
 
@@ -20,7 +20,7 @@ function App() {
                 <Route path="/admin"  element={<Admin />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/DriverVerification" element={<DriverVerification/>} />
+                <Route path="/DriverRequest" element={<DriverRequest/>} />
                 <Route path="/PassengerRequest" element={<PassengerRequest/>} />
                 <Route path="/map" element={<MapPage />} />
                 <Route path="/DriverHomePage" element={<RidesList />} />

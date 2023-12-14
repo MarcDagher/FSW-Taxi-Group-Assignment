@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./index.css";
 
@@ -6,27 +6,82 @@ import Form from "../../components/ui/form";
 import Button from "../../components/ui/button";
 import Header from "../../components/ui/header";
 
-import sloganPng from "../../assets/sloganPng.png"
+import sloganPng from "../../assets/sloganPng.png";
+
+import { request } from "../../helpers/request_helper";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const [error, setError] = useState(null);
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
-        firstname: "",
-        lastname: "",
+        first_name: "",
+        last_name: "",
         role: "",
         img: "",
     });
 
     const handleChange = (e) => {
+        setError(null);
         setCredentials((prevCreds) => {
             return { ...prevCreds, [e.target.name]: e.target.value };
         });
-        console.log(credentials)
+        console.log(credentials);
     };
 
-    const handleSubmit = () => {
-        console.log("works");
+    const handleSubmit = async () => {
+        if (credentials.role == 3) {
+            delete credentials.age;
+            delete credentials.driver_license;
+            const response = await request({
+                body: credentials,
+                route: "register",
+                method: "POST",
+            });
+            if (response.data.status === "success") {
+                return navigate("/login");
+            } else {
+                const { email, password, first_name, last_name } =
+                    response.data.details;
+                setError({
+                    email: email,
+                    password: password,
+                    first_name: first_name,
+                    last_name: last_name,
+                });
+                console.log(response);
+                console.log("error");
+            }
+        } else {
+            const response = await request({
+                body: credentials,
+                route: "createDriver",
+                method: "POST",
+            });
+            if (response.data.status === "success") {
+                return navigate("/DriverVerification");
+            } else {
+                const {
+                    email,
+                    password,
+                    first_name,
+                    last_name,
+                    age,
+                    driver_license,
+                } = response.data.details;
+                setError({
+                    email: email,
+                    password: password,
+                    first_name: first_name,
+                    last_name: last_name,
+                    age: age,
+                    driver_license: driver_license,
+                });
+                console.log(response);
+                console.log("error");
+            }
+        }
     };
 
     return (
@@ -35,13 +90,18 @@ const Login = () => {
             <div className="auth">
                 <div className="auth-left">
                     <Form title={"Join Us"}>
+                        {error && error.email && (
+                            <p className="form-error">{error.email}</p>
+                        )}
                         <input
                             type="text"
                             name="email"
                             placeholder="Email"
                             onChange={handleChange}
                         />
-
+                        {error && error.password && (
+                            <p className="form-error">{error.password}</p>
+                        )}
                         <input
                             type="password"
                             name="password"
@@ -49,16 +109,23 @@ const Login = () => {
                             onChange={handleChange}
                         />
 
+                        {error && error.first_name && (
+                            <p className="form-error">{error.first_name}</p>
+                        )}
+                        {error && error.last_name && (
+                            <p className="form-error">{error.last_name}</p>
+                        )}
+
                         <div className="form-inner">
                             <input
                                 type="text"
-                                name="firstname"
+                                name="first_name"
                                 placeholder="First Name"
                                 onChange={handleChange}
                             />
                             <input
                                 type="text"
-                                name="lastname"
+                                name="last_name"
                                 placeholder="Last Name"
                                 onChange={handleChange}
                             />
@@ -66,7 +133,12 @@ const Login = () => {
 
                         <div className="form-inner">
                             <label htmlFor="img">Profile picture</label>
-                            <input type="file" name="img" id="img" onChange={handleChange}/>
+                            <input
+                                type="file"
+                                name="img"
+                                id="img"
+                                onChange={handleChange}
+                            />
                         </div>
 
                         <select name="role" id="role" onChange={handleChange}>
@@ -77,6 +149,11 @@ const Login = () => {
 
                         {credentials.role == 2 && (
                             <>
+                                {error && error.age && (
+                                    <p className="form-error">
+                                        {error.last_name}
+                                    </p>
+                                )}
                                 <input
                                     type="number"
                                     name="age"
@@ -85,6 +162,11 @@ const Login = () => {
                                     min={18}
                                     onChange={handleChange}
                                 />
+                                {error && error.driver_license && (
+                                    <p className="form-error">
+                                        {error.driver_license}
+                                    </p>
+                                )}
                                 <div className="form-inner">
                                     <label htmlFor="driver_license">
                                         Driver License
