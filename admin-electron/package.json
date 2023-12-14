@@ -1,0 +1,14 @@
+{
+  "name": "admin-electron",
+  "version": "1.0.0",
+  "description": "Your app description",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron electron-main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "electron": "^16.0.0"
+  },
+  "devDependencies": {}
+}
