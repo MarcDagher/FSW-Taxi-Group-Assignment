@@ -1,15 +1,13 @@
 .homeBody {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 100vw;
   padding: 0 var(--main-x-padding);
-  overflow-x: hidden;
 }
 
 .image{
   width: 500px;
   height: 500px;
-  transform: translateX(-100px)translateY(65px);
 }
 .leftside {
   flex-direction: row;

@@ -60,7 +60,7 @@ const Login = () => {
                 method: "POST",
             });
             if (response.data.status === "success") {
-                return navigate("/DriverVerification");
+                return navigate("/DriverRequest");
             } else {
                 const {
                     email,
