@@ -21,14 +21,14 @@ function Home(){
           </div>
 
           <div className="rightSide">
-            <img src={logo} alt="" />
+            <img src={logo} alt="" className="image" />
           </div>
 
         </div>
 
         </div>
         <div className="buttonBody">
-       <Button>Create Account</Button>
+       <Button ><a href="/login">Create Account</a></Button>
         </div>
         <div className="arrowDown">
           <img src={arrow} alt="" width={40} />

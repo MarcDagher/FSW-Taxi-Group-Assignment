@@ -3,8 +3,14 @@
   justify-content: space-between;
   width: 100%;
   padding: 0 var(--main-x-padding);
+  overflow-x: hidden;
 }
 
+.image{
+  width: 500px;
+  height: 500px;
+  transform: translateX(-100px)translateY(65px);
+}
 .leftside {
   flex-direction: row;
   width: 50%;
@@ -18,13 +24,15 @@
 }
 
 .home-title {
-  font-size: 6rem;
+  font-size: 12rem;
   margin-top: 100px;
+  color: #544B4C;
 }
 
 .home-desc {
   font-size: 1.5rem;
   width: 400px;
+  margin-left: 30px;
 }
 
 .buttonBody {
