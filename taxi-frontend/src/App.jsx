@@ -7,7 +7,7 @@ import PassengerDashboard from "./pages/Passenger Dashboard";
 import Login from "./pages/Login";
 import MapPage from "./pages/Map";
 import ErrorPage from "./pages/Error";
-import RidesList from "./Pages/Driver";
+import RidesList from "./pages/Driver";
 import DriverVerification from './Pages/DriverVerfication'
 import PassengerRequest from "./Pages/PassengerRequest";
 import "./App.css";
