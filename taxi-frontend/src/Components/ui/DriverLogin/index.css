@@ -1,23 +1,36 @@
-
-.Profile{
-    display: flex;
-    flex: column;
-    width: 50%;
-    height: 100%;
+.wrapper-1{
+  display: flex;
+  overflow: hidden;
 }
-.input-column {
-    display: flex;
-    flex-direction: column;
-  }
+.right{
+  display: flex;
+  width: 50vw;
+  height: 100vh;
+  background-color: #F84A43;
+}
+.left{
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
   
-  .small-placeholder {
-    font-size: 12px;
-    margin-bottom: 8px; 
-    width: 300px;
-    height: 50px;
-  }
-  .headerProfile{
-    display: flex;
-    flex-direction: column;
-    height: auto;
-  }
+}
+.header{
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+
+}
+.input-column{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30%;
+}
+.small-placeholder{
+  width: 700px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
