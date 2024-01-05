@@ -37,7 +37,7 @@ const Login = () => {
 
         else {
             setShowError(response.data.message);
-            console.log(response.data)
+            console.log(response.data);
         }
     };
 

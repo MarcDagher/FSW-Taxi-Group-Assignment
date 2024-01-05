@@ -4,14 +4,14 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 1000,
     height: 600,
     webPreferences: {
       nodeIntegration: true,
     },
   });
 
-  mainWindow.loadFile('http://localhost:5173/admin'); // Load your HTML file here.
+  mainWindow.loadURL('http://localhost:5173/admin'); 
 
   mainWindow.on('closed', function () {
     mainWindow = null;

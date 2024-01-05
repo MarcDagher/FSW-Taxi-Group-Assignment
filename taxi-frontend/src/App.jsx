@@ -9,7 +9,7 @@ import MapPage from "./pages/Map";
 import ErrorPage from "./pages/Error";
 import RidesList from "./pages/Driver";
 import DriverRequest from './Pages/DriverRequest'
-import PassengerRequest from "./Pages/PassengerRequest";
+import PassengerRequest from "./pages/PassengerRequest";
 import "./App.css";
 
 function App() {
